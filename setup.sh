@@ -2,6 +2,10 @@
 
 set -eux pipefail
 
+function log () {
+  echo [`date -Ins`] $1
+}
+
 function initialize () {
   apt update -y
   apt upgrade -y
@@ -63,17 +67,24 @@ function install_github_cli () {
 }
 
 function main () {
+  log "セットアップを開始します。"
   initialize
+  log "ロケールの設定をします。"
   set_locale
 
+  log "コマンド群をインストールします。"
   install_tools
 
+  log "設定ファイルをインストールします。"
   initialize_dotfiles
 
+  log "git-secrets をインストールします。"
   install_git_secrets
 
+  log "uv をインストールします。"
   install_uv
 
+  log "GitHub CLI をインストールします。"
   install_github_cli
 }
 
