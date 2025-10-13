@@ -17,7 +17,7 @@ function set_locale () {
 }
 
 function install_tools () {
-  apt install -y git vim curl zip unzip jq tmux
+  apt install -y git curl zip unzip jq tmux
 }
 
 function initialize_dotfiles () {
@@ -66,6 +66,17 @@ function install_github_cli () {
 	  && apt install gh -y
 }
 
+function install_neovim () {
+  # https://github.com/neovim/neovim/blob/master/INSTALL.md#linux
+  curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+  rm -rf /opt/nvim-linux-x86_64
+  tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+  rm -f nvim-linux-x86_64.tar.gz
+
+  echo 'export PATH="$PATH:/opt/nvim-linux-x86_64/bin"' >> ~/.bashrc
+  echo "alias vi='nvim'" >> ~/.bashrc
+}
+
 function main () {
   log "セットアップを開始します。"
   initialize
@@ -86,6 +97,9 @@ function main () {
 
   log "GitHub CLI をインストールします。"
   install_github_cli
+
+  log "neovim をインストールします。"
+  install_neovim
 }
 
 main
