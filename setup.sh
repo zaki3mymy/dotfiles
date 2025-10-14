@@ -105,3 +105,4 @@ function main () {
 main
 source ~/.bashrc
 
+log "インストールが完了しました。\`gh auth login\`を実行してセットアップを完了してください。"
