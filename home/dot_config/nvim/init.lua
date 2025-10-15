@@ -25,7 +25,18 @@ if not vim.loop.fs_stat(lazypath) then
     })
 end
 vim.opt.rtp:prepend(lazypath)
-local plugins = {}
+local plugins = {
+    {
+        -- 検索ツール(Telescope)
+        'nvim-telescope/telescope.nvim', tag = '0.1.8',
+        dependencies = { 'nvim-lua/plenary.nvim' }
+    }
+}
 local opts = {}
 require("lazy").setup(plugins, opts)
+
+-- 検索ツール(Telescope)の設定
+local builtin = require('telescope.builtin')
+vim.keymap.set('n', '<C-p>', builtin.find_files, {})
+vim.keymap.set('n', '<C-g>', builtin.live_grep, {})
 
