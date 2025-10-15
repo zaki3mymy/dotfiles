@@ -30,7 +30,11 @@ local plugins = {
         -- 検索ツール(Telescope)
         'nvim-telescope/telescope.nvim', tag = '0.1.8',
         dependencies = { 'nvim-lua/plenary.nvim' }
-    }
+    },
+    {
+        -- カラースキーマ(Catppuccin)
+        'catppuccin/nvim', name = 'catppuccin', priority = 1000
+    },
 }
 local opts = {}
 require("lazy").setup(plugins, opts)
@@ -39,4 +43,8 @@ require("lazy").setup(plugins, opts)
 local builtin = require('telescope.builtin')
 vim.keymap.set('n', '<C-p>', builtin.find_files, {})
 vim.keymap.set('n', '<C-g>', builtin.live_grep, {})
+
+-- カラースキーマ(Catppuccin)の設定
+require("catppuccin").setup()
+vim.cmd.colorscheme "catppuccin"
 
