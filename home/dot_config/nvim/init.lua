@@ -39,6 +39,15 @@ local plugins = {
         -- 構文解析ツール(Tree-sitter)
         "nvim-treesitter/nvim-treesitter", build = ":TSUpdate"
     },
+    {
+        -- ファイルエクスプローラー(Neo-Tree)
+        "nvim-neo-tree/neo-tree.nvim", branch = "3.x",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons",
+            "MunifTanjim/nui.nvim",
+        }
+    },
 }
 local opts = {}
 require("lazy").setup(plugins, opts)
@@ -71,5 +80,15 @@ configs.setup({
     sync_install = false,
     highlight = { enable = true },
     indent = { enable = true },
+})
+
+-- ファイルエクスプローラー(Neo-Tree)
+vim.keymap.set("n", "<C-n>", ":Neotree filesystem reveal left<CR>")
+require("neo-tree").setup({
+    filesystem = {
+        window = {
+            width = 30
+        }
+    }
 })
 
