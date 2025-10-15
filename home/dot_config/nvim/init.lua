@@ -35,6 +35,10 @@ local plugins = {
         -- カラースキーマ(Catppuccin)
         'catppuccin/nvim', name = 'catppuccin', priority = 1000
     },
+    {
+        -- 構文解析ツール(Tree-sitter)
+        "nvim-treesitter/nvim-treesitter", build = ":TSUpdate"
+    },
 }
 local opts = {}
 require("lazy").setup(plugins, opts)
@@ -47,4 +51,25 @@ vim.keymap.set('n', '<C-g>', builtin.live_grep, {})
 -- カラースキーマ(Catppuccin)の設定
 require("catppuccin").setup()
 vim.cmd.colorscheme "catppuccin"
+
+-- 構文解析ツール
+local configs = require("nvim-treesitter.configs")
+configs.setup({
+    ensure_installed = {
+        "bash",
+        "lua",
+        "javascript",
+        "typescript",
+        "json",
+        "json5",
+        "python",
+        "haskell",
+        "sql",
+        "toml",
+        "yaml",
+    },
+    sync_install = false,
+    highlight = { enable = true },
+    indent = { enable = true },
+})
 
