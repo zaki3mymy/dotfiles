@@ -15,12 +15,12 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
     {
         -- 検索ツール(Telescope)
-        'nvim-telescope/telescope.nvim', tag = '0.1.8',
-        dependencies = { 'nvim-lua/plenary.nvim' }
+        "nvim-telescope/telescope.nvim", tag = "0.1.8",
+        dependencies = { "nvim-lua/plenary.nvim" }
     },
     {
         -- カラースキーマ(Catppuccin)
-        'catppuccin/nvim', name = 'catppuccin', priority = 1000
+        "catppuccin/nvim", name = "catppuccin", priority = 1000
     },
     {
         -- 構文解析ツール(Tree-sitter)
@@ -40,9 +40,9 @@ local opts = {}
 require("lazy").setup(plugins, opts)
 
 -- 検索ツール(Telescope)の設定
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<C-p>', builtin.find_files, {})
-vim.keymap.set('n', '<C-g>', builtin.live_grep, {})
+local builtin = require("telescope.builtin")
+vim.keymap.set("n", "<C-p>", builtin.find_files, {})
+vim.keymap.set("n", "<C-g>", builtin.live_grep, {})
 
 -- カラースキーマ(Catppuccin)の設定
 require("catppuccin").setup()
@@ -90,7 +90,7 @@ vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
 
 -- mode切り替えのショートカット
-vim.api.nvim_set_keymap('i', 'jj', '<ESC>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap("i", "jj", "<ESC>", {noremap = true, silent = true})
 -- クリップボードの使用
 vim.opt.clipboard:append({"unnamedplus"})
 
