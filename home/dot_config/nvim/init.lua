@@ -12,6 +12,10 @@ vim.api.nvim_set_keymap('i', 'jj', '<ESC>', {noremap = true, silent = true})
 -- クリップボードの使用
 vim.opt.clipboard:append({"unnamedplus"})
 
+-- 現在行は絶対行番号でその他は相対行番号
+vim.opt.number = true
+vim.opt.relativenumber = true
+
 -- プラグインマネージャー(lazy.nvim)のインストール
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
