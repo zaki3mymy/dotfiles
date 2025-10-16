@@ -1,4 +1,5 @@
 export LANG=ja_JP.UTF-8
+export TERM=tmux-256color
 # uv
 source $HOME/.local/bin/env
 eval "$(uv generate-shell-completion bash)"
