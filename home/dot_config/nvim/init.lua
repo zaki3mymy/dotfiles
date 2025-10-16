@@ -96,3 +96,9 @@ require("neo-tree").setup({
     }
 })
 
+-- 現在行と列を目立たせる
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
+-- カラースキーマの設定色を上書きする
+vim.api.nvim_set_hl(0, "CursorColumn", { bg = "#21223a" })
+
