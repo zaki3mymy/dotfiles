@@ -1,21 +1,4 @@
--- タブ文字をスペースにする
-vim.cmd("set expandtab")
--- タブ幅を半角スペース4文字にする
-vim.cmd("set tabstop=4")
--- INSERTモードでのタブ幅を半角スペース４文字にする
-vim.cmd("set softtabstop=4")
--- インデントを半角スペース４文字にする
-vim.cmd("set shiftwidth=4")
-
--- mode切り替えのショートカット
-vim.api.nvim_set_keymap('i', 'jj', '<ESC>', {noremap = true, silent = true})
--- クリップボードの使用
-vim.opt.clipboard:append({"unnamedplus"})
-
--- 現在行は絶対行番号でその他は相対行番号
-vim.opt.number = true
-vim.opt.relativenumber = true
-
+-- プラグインの設定
 -- プラグインマネージャー(lazy.nvim)のインストール
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -95,6 +78,25 @@ require("neo-tree").setup({
         }
     }
 })
+
+-- 個人設定
+-- タブ文字をスペースにする
+vim.cmd("set expandtab")
+-- タブ幅を半角スペース4文字にする
+vim.cmd("set tabstop=4")
+-- INSERTモードでのタブ幅を半角スペース４文字にする
+vim.cmd("set softtabstop=4")
+-- インデントを半角スペース４文字にする
+vim.cmd("set shiftwidth=4")
+
+-- mode切り替えのショートカット
+vim.api.nvim_set_keymap('i', 'jj', '<ESC>', {noremap = true, silent = true})
+-- クリップボードの使用
+vim.opt.clipboard:append({"unnamedplus"})
+
+-- 現在行は絶対行番号でその他は相対行番号
+vim.opt.number = true
+vim.opt.relativenumber = true
 
 -- 現在行と列を目立たせる
 vim.opt.cursorline = true
