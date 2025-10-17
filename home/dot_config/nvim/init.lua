@@ -74,7 +74,7 @@ vim.keymap.set("n", "<C-n>", ":Neotree filesystem reveal left<CR>")
 require("neo-tree").setup({
     filesystem = {
         window = {
-            width = 30
+            width = 24
         }
     }
 })
