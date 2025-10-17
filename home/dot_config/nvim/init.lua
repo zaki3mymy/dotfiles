@@ -70,7 +70,7 @@ configs.setup({
 })
 
 -- ファイルエクスプローラー(Neo-Tree)
-vim.keymap.set("n", "<C-n>", ":Neotree filesystem reveal left<CR>")
+vim.keymap.set("n", "<C-n>", ":Neotree toggle<CR>")
 require("neo-tree").setup({
     filesystem = {
         window = {
