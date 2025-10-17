@@ -108,3 +108,6 @@ vim.api.nvim_set_hl(0, "CursorColumn", { bg = "#21223a" })
 vim.keymap.set("n", "<C-s>", ":w<CR>")
 vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>a")
 
+-- h,lで行をまたぐ
+vim.cmd("set whichwrap=<,>,h,l")
+
