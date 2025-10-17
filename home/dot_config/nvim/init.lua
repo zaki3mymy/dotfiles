@@ -28,7 +28,7 @@ local plugins = {
     },
     {
         -- ファイルエクスプローラー(Neo-Tree)
-        "nvim-neo-tree/neo-tree.nvim", branch = "3.x",
+        "nvim-neo-tree/neo-tree.nvim", branch = "v3.x",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-tree/nvim-web-devicons",
