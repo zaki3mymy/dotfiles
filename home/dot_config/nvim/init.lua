@@ -104,3 +104,7 @@ vim.opt.cursorcolumn = true
 -- カラースキーマの設定色を上書きする
 vim.api.nvim_set_hl(0, "CursorColumn", { bg = "#21223a" })
 
+-- Ctrl-S で保存
+vim.keymap.set("n", "<C-s>", ":w<CR>")
+vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>a")
+
