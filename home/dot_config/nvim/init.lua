@@ -99,6 +99,10 @@ vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=4")
 -- インデントを半角スペース４文字にする
 vim.cmd("set shiftwidth=4")
+-- 改行時に前の行のインデントを継続
+vim.cmd("set autoindent")
+-- 改行時にインデントを調整
+vim.cmd("set smartindent")
 
 -- mode切り替えのショートカット
 vim.api.nvim_set_keymap("i", "jj", "<ESC>", {noremap = true, silent = true})
