@@ -111,3 +111,6 @@ vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>a")
 -- h,lで行をまたぐ
 vim.cmd("set whichwrap=<,>,h,l")
 
+-- 上端と下端に余裕をもたせる
+vim.cmd("set scrolloff=5")
+
