@@ -72,6 +72,7 @@ configs.setup({
 -- ファイルエクスプローラー(Neo-Tree)
 vim.keymap.set("n", "<C-n>", ":Neotree toggle<CR>")
 require("neo-tree").setup({
+    close_if_last_window = true, -- エディタを閉じたらファイルエクスプローラーも閉じる
     filesystem = {
         window = {
             width = 24
