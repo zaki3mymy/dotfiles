@@ -79,6 +79,16 @@ require("neo-tree").setup({
         }
     }
 })
+-- 起動時にファイルエクスプローラーも開く
+vim.api.nvim_create_autocmd("VimEnter", {
+    callback = function()
+        vim.cmd("Neotree filesystem reveal left")
+        -- ファイルが指定されていたらそちらにフォーカスする
+        if vim.fn.argc() > 0 then
+            vim.cmd("wincmd l")
+        end
+    end,
+})
 
 -- 個人設定
 -- タブ文字をスペースにする
