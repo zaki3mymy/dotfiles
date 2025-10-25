@@ -3,7 +3,7 @@ require("neo-tree").setup({
     close_if_last_window = true, -- エディタを閉じたらファイルエクスプローラーも閉じる
     filesystem = {
         window = {
-            width = 24
+            width = 30
         }
     },
     window = {
