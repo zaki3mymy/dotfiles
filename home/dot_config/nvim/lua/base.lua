@@ -42,3 +42,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end,
 })
 
+-- コマンドを右下に表示
+vim.cmd("set showcmd")
+
