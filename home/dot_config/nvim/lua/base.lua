@@ -45,3 +45,6 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 -- コマンドを右下に表示
 vim.cmd("set showcmd")
 
+-- <leader>キーをスペースを割り当てる
+vim.g.mapleader = " "
+
