@@ -5,7 +5,13 @@ require("neo-tree").setup({
         window = {
             width = 24
         }
-    }
+    },
+    window = {
+        mappings = {
+            -- ウィンドウを増減させるためにデフォルトの割当を削除する
+            ["l"] = "",
+        }
+    },
 })
 -- 起動時にファイルエクスプローラーも開く
 vim.api.nvim_create_autocmd("VimEnter", {
@@ -28,4 +34,14 @@ vim.api.nvim_create_autocmd("VimEnter", {
 })
 -- Ctrl-N でトグル
 vim.keymap.set("n", "<C-n>", ":Neotree toggle<CR>")
+
+-- Neo-treeのウィンドウの幅を増減させる
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "neo-tree",
+    callback = function()
+        local opts = { buffer = true, silent = true, noremap = true }
+        vim.keymap.set("n", "h", "<C-w><", opts)
+        vim.keymap.set("n", "l", "<C-w>>", opts)
+    end,
+})
 
