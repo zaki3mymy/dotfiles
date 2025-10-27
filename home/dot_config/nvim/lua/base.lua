@@ -48,3 +48,10 @@ vim.cmd("set showcmd")
 -- <leader>キーをスペースを割り当てる
 vim.g.mapleader = " "
 
+-- 下にターミナルを出す
+vim.cmd("botright split | terminal bash")
+vim.cmd("wincmd j")
+vim.cmd("resize 10")
+-- ターミナルで<ESC>を押したらターミナルから抜けるように
+vim.keymap.set("t", "<ESC>", "<C-\\><C-n>")
+
