@@ -77,6 +77,12 @@ function install_neovim () {
   echo "alias vi='nvim'" >> ~/.bashrc
 }
 
+function install_volta () {
+  # https://volta.sh/
+  curl https://get.volta.sh | bash
+  volta install node@latest
+}
+
 function main () {
   log "セットアップを開始します。"
   initialize
@@ -100,6 +106,9 @@ function main () {
 
   log "neovim をインストールします。"
   install_neovim
+
+  log "Volta, Node.js, npm をインストールします。"
+  install_volta
 }
 
 main
