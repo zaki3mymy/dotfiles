@@ -27,6 +27,8 @@
 [rerere]
     enabled = true
     autoupdate = true
+[pull]
+    ff = only
 [merge]
     conflictstyle = zdiff3
     ff = false
