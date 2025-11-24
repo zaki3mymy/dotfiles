@@ -1,51 +1,51 @@
--- タブ設定
-vim.cmd("set expandtab")     -- タブ文字をスペースにする
-vim.cmd("set tabstop=4")     -- タブ幅を半角スペース4文字にする
-vim.cmd("set softtabstop=4") -- INSERTモードでのタブ幅を半角スペース４文字にする
-vim.cmd("set shiftwidth=4")  -- インデントを半角スペース４文字にする
-vim.cmd("set autoindent")    -- 改行時に前の行のインデントを継続
-vim.cmd("set smartindent")   -- 改行時にインデントを調整
+-- タブ・インデント設定
+vim.opt.expandtab = true
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.autoindent = true
+vim.opt.smartindent = true
 
--- mode切り替えのショートカット
-vim.api.nvim_set_keymap("i", "jj", "<ESC>", {noremap = true, silent = true})
--- クリップボードの使用
-vim.opt.clipboard:append({"unnamedplus"})
+-- mode切り替え
+vim.keymap.set("i", "jj", "<Esc>", { noremap = true, silent = true })
 
--- 現在行は絶対行番号でその他は相対行番号
+-- クリップボード
+vim.opt.clipboard:append("unnamedplus")
+
+-- 行番号
 vim.opt.number = true
 vim.opt.relativenumber = true
--- 現在行と列を目立たせる
+
+-- カーソル強調
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
--- 現在列の色の設定
 vim.api.nvim_set_hl(0, "CursorColumn", { bg = "#21223a" })
 
--- Ctrl-S で保存
-vim.keymap.set("n", "<C-s>", ":w<CR>")
-vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>a")
+-- Ctrl-S 保存
+vim.keymap.set("n", "<C-s>", "<Cmd>w<CR>", { silent = true })
+vim.keymap.set("i", "<C-s>", "<Esc><Cmd>w<CR>a", { silent = true })
 
+-- h,l で行跨ぎ
+vim.opt.whichwrap = { ["<"] = true, [">"] = true, h = true, l = true }
 
--- h,lで行をまたぐ
-vim.cmd("set whichwrap=<,>,h,l")
+-- 上下オフセット
+vim.opt.scrolloff = 5
 
--- 上端と下端に余裕をもたせる
-vim.cmd("set scrolloff=5")
-
--- 前回終了時の位置にカーソルを移動する
+-- 前回位置復元
 vim.api.nvim_create_autocmd("BufReadPost", {
-    pattern = "*",
-    callback = function()
-        local mark = vim.api.nvim_buf_get_mark(0, '"')
-        local lcount = vim.api.nvim_buf_line_count(0)
-        if mark[1] > 0 and mark[1] <= lcount then
-            pcall(vim.api.nvim_win_set_cursor, 0, mark)
-        end
-    end,
+  pattern = "*",
+  callback = function()
+    local mark = vim.api.nvim_buf_get_mark(0, '"')
+    local lcount = vim.api.nvim_buf_line_count(0)
+    if mark[1] > 0 and mark[1] <= lcount then
+      pcall(vim.api.nvim_win_set_cursor, 0, mark)
+    end
+  end,
 })
 
--- コマンドを右下に表示
-vim.cmd("set showcmd")
+-- showcmd（右下のコマンド表示）
+vim.opt.showcmd = true
 
--- <leader>キーをスペースを割り当てる
+-- leader キー
 vim.g.mapleader = " "
 
