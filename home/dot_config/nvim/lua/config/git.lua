@@ -1,5 +1,7 @@
 -- Gitの設定
 require("gitsigns").setup({
+    -- 行番号に色を付ける
+    numhl = true,
     -- カーソル行の変更を行末に表示する
     current_line_blame = true,
     current_line_blame_opts = {
