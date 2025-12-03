@@ -45,6 +45,10 @@ require("gitsigns").setup({
             gitsigns.reset_hunk({ vim.fn.line('.'), vim.fn.line('v') })
         end)
         map('n', '<leader>hR', gitsigns.reset_buffer)
+
+        -- Preview
+        map('n', '<leader>hp', gitsigns.preview_hunk)
+        map('n', '<leader>hi', gitsigns.preview_hunk_inline)
     end
 })
 
