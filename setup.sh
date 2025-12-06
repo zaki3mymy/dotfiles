@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -ex pipefail
+set -eux pipefail
 
 function log () {
   echo [`date -Ins`] $1
