@@ -83,7 +83,7 @@ function install_neovim () {
 function install_volta () {
   # https://volta.sh/
   curl https://get.volta.sh | bash
-  volta install node@latest
+  ~/.volta/bin/volta install node@latest
 }
 
 function main () {
