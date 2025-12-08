@@ -6,7 +6,7 @@ local lsp_servers = {
 local diagnostics = {
     "typos_lsp",
 }
-local ensure_installed = vim.tbl_flatten({ lsp_servers, diagnostics })
+local ensure_installed = vim.iter({ lsp_servers, diagnostics }):flatten():totable()
 
 require("mason").setup()
 require("mason-lspconfig").setup({
