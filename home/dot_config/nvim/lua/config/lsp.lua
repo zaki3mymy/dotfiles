@@ -19,6 +19,16 @@ vim.cmd[[set completeopt+=menuone,noselect,popup]]
 vim.lsp.config("lua_ls", {
     cmd = { vim.fn.stdpath("data") .. "/mason/bin/lua-language-server" },
     filetypes = { "lua" },
+    -- `vim`キーワードの警告対応
+    settings = {
+        Lua = {
+            workspace = {
+                library = {
+                    vim.env.VIMRUNTIME .. "/lua",
+                }
+            }
+        }
+    },
     on_attach = function(client, bufnr)
         vim.lsp.completion.enable(true, client.id, bufnr, {
             autotrigger = true,
