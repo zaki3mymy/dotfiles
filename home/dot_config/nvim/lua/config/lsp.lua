@@ -2,6 +2,7 @@ local lsp_servers = {
     -- 3.16.0 ではうまく起動しない
     -- https://github.com/LuaLS/lua-language-server/issues/3301
     "lua_ls@3.15.0",
+    "pyright",
 }
 local diagnostics = {
     "typos_lsp",
