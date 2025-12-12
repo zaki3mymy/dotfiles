@@ -5,8 +5,6 @@
 [setup.sh](./setup.sh)をbashで実行すれば設定が完了する。
 
 ```shell
-git clone https://github.com/zaki3mymy/dotfiles
-cd dotfiles/
-bash setup.sh
+source <(curl https://raw.githubusercontent.com/zaki3mymy/dotfiles/refs/heads/main/setup.sh)
 ```
 
