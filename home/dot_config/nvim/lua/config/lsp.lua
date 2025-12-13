@@ -46,10 +46,8 @@ vim.keymap.set("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
 vim.keymap.set("n", "gn", "<cmd>lua vim.lsp.buf.rename()<CR>")
 
 -- 自動補完の設定
-
 -- lspの設定後に追加
 vim.cmd[[set completeopt+=menu,menuone,noselect]]
-
 local cmp = require("cmp")
 cmp.setup({
     mapping = cmp.mapping.preset.insert({
