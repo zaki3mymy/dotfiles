@@ -49,3 +49,12 @@ vim.opt.showcmd = true
 -- leader キー
 vim.g.mapleader = " "
 
+-- 自動読み込み設定
+vim.opt.autoread = true
+vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
+    -- Neovimにフォーカスが戻ったときとバッファに入ったときに
+    -- `checktime`で再読み込みを行う
+    command = "if mode() != 'c' | checktime | endif",
+    pattern = "*",
+})
+
