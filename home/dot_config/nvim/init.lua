@@ -7,4 +7,5 @@ require("config.tabs")
 require("config.filer")
 require("config.terminal")
 require("config.git")
+require("config.mini")
 
