@@ -1,9 +1,10 @@
+-- ターミナルモードから抜けるための設定
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], {noremap = true})
+vim.keymap.set("t", "jj", [[<C-\><C-n>]], {noremap = true})
+
 require("toggleterm").setup({
+    -- 同じキーを入力するとターミナルを閉じることができる
     open_mapping = [[<leader>@]],
     direction = "float",
 })
-
--- フロートで表示するので以下のマッピングは不要
--- -- ターミナルから移動するための設定
--- vim.keymap.set("t", "<C-w>", "<C-\\><C-n><C-w>")
 
