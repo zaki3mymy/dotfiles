@@ -3,6 +3,8 @@ export TERM=tmux-256color
 
 export EDITOR=nvim
 
+source ~/.bash_prompt
+
 # ターミナル分割コマンド
 function ide () {
     tmux split-window -v -l 10
