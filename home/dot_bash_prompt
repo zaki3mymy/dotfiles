@@ -1,0 +1,73 @@
+SHORTEN_LENGTH=3
+
+__shorten_parent() {
+  # 親ディレクトリは省略しカレントディレクトリはフルで表示
+  # $1 ... ディレクトリパス
+  # #2 ... 省略した文字数の長さ
+  local pwd=$1
+  local max_length=$2
+
+  # 後でjoinすることを考えて先頭の`/`を除去
+  pwd=${pwd#"/"}
+  IFS='/' read -ra array <<< $pwd
+
+  local dir=""
+  for d in "${array[@]}"; do
+    if [ ${array[-1]} == $d ] || [ ${#d} -le $max_length ] ; then
+      # カレントディレクトリは省略しない
+      # 親ディレクトリでも最大文字数以内なら省略しない
+      dir=$dir/$d
+    else
+      dir="$dir/${d:0:${max_length}}"
+    fi
+  done
+  echo $dir
+}
+
+left_prompt() {
+  # `directory[git branch]$ ` というプロンプトを表示する
+  # ホームディレクトリ以下であれば`~`で省略する
+  local home=$HOME
+  local pwd=$PWD
+
+  local prefix=""
+  if [[ "$pwd" == "${home}" ]] || [[ "$pwd" =~ ${home}/.+ ]]; then
+    # ホームディレクトリ以下を省略
+    prefix="~"
+    dir="${pwd#${home}}"
+  else
+    dir="$pwd"
+  fi
+  # 親ディレクトリを短くする
+  dir=${prefix}$(__shorten_parent "$dir" $SHORTEN_LENGTH)
+
+  local branch
+  branch="[$(git branch --show-current 2>/dev/null)]"
+  if [ $? -ne 0 ]; then
+    branch=
+  fi
+
+  # ディレクトリは緑、ブランチは黄、`$`は青
+  printf '\033[1;32m%s\033[1;33m%s\033[1;34m$\033[00m ' "$dir" "$branch"
+}
+
+right_prompt() {
+  # Enter押下時（コマンド実行直前）に右端へ時刻を表示
+  local cols time
+  # ターミナルの幅
+  cols=$(tput cols)
+  time=$(date '+%H:%M:%S')
+
+  # 現在行の右端に時刻を表示
+  # \033[s     : 現在位置を保存（Enter 後の次行）
+  # \033[1A    : 1 行上へ移動（コマンド入力行）
+  # \033[nG    : 行内の絶対桁位置へ移動（ターミナルの幅分移動）
+  # \033[1;30m : 時刻の色指定（Dark Gray）
+  # \033[0m    : 色を戻す
+  # \033[u     : 保存した位置へ復帰
+  printf '\033[s\033[1A\033[%dG\033[1;30m%s\033[0m\033[u' \
+    "$((cols - ${#time} + 1))" "$time"
+}
+
+export PS0='$(right_prompt)'
+export PS1='$(left_prompt)'
