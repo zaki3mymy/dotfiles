@@ -2,7 +2,6 @@ local lsp_servers = {
     -- 3.16.0 ではうまく起動しない
     -- https://github.com/LuaLS/lua-language-server/issues/3301
     "lua_ls@3.15.0",
-    "pyright",
 }
 local diagnostics = {
     "typos_lsp",
@@ -29,6 +28,14 @@ vim.lsp.config("lua_ls", {
         }
     },
 })
+vim.lsp.config("ruff", {
+    cmd = { "uv", "run", "ruff", "server" },
+})
+vim.lsp.config("ty", {
+    cmd = { "uv", "run", "ty", "server" },
+})
+vim.lsp.enable("ruff")
+vim.lsp.enable("ty")
 vim.lsp.enable(ensure_installed)
 
 -- キーマップの設定
@@ -65,4 +72,3 @@ cmp.setup({
         { name = "buffer" },
     })
 })
-
