@@ -28,15 +28,19 @@ vim.lsp.config("lua_ls", {
         }
     },
 })
-vim.lsp.config("ruff", {
-    cmd = { "uv", "run", "ruff", "server" },
-})
-vim.lsp.config("ty", {
-    cmd = { "uv", "run", "ty", "server" },
-})
-vim.lsp.enable("ruff")
-vim.lsp.enable("ty")
 vim.lsp.enable(ensure_installed)
+if vim.uv.fs_stat(vim.fn.getcwd() .. "/.venv/bin/ruff") then
+    vim.lsp.config("ruff", {
+        cmd = { "uv", "run", "ruff", "server" },
+    })
+    vim.lsp.enable("ruff")
+end
+if vim.uv.fs_stat(vim.fn.getcwd() .. "/.venv/bin/ty") then
+    vim.lsp.config("ty", {
+        cmd = { "uv", "run", "ty", "server" },
+    })
+    vim.lsp.enable("ty")
+end
 
 -- キーマップの設定
 -- カーソル下の変数の情報
