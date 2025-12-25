@@ -2,7 +2,6 @@ local lsp_servers = {
     -- 3.16.0 ではうまく起動しない
     -- https://github.com/LuaLS/lua-language-server/issues/3301
     "lua_ls@3.15.0",
-    "pyright",
 }
 local diagnostics = {
     "typos_lsp",
@@ -30,6 +29,18 @@ vim.lsp.config("lua_ls", {
     },
 })
 vim.lsp.enable(ensure_installed)
+if vim.uv.fs_stat(vim.fn.getcwd() .. "/.venv/bin/ruff") then
+    vim.lsp.config("ruff", {
+        cmd = { "uv", "run", "ruff", "server" },
+    })
+    vim.lsp.enable("ruff")
+end
+if vim.uv.fs_stat(vim.fn.getcwd() .. "/.venv/bin/ty") then
+    vim.lsp.config("ty", {
+        cmd = { "uv", "run", "ty", "server" },
+    })
+    vim.lsp.enable("ty")
+end
 
 -- キーマップの設定
 -- カーソル下の変数の情報
@@ -66,3 +77,19 @@ cmp.setup({
     })
 })
 
+-- 自動フォーマット
+vim.api.nvim_create_autocmd("LspAttach", {
+    callback = function(args)
+        local bufnr = args.buf
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+        if client.server_capabilities.documentFormattingProvider then
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                buffer = bufnr,
+                callback = function()
+                    vim.lsp.buf.format({ bufnr = bufnr })
+                end,
+            })
+        end
+    end,
+})
