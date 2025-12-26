@@ -22,5 +22,5 @@ repos:
       - id: shfmt
         name: Format shell script
         language: system
-        entry: shfmt -d
+        entry: shfmt -d -w
         files: '^(.+\.sh|.*bash.*)$'
