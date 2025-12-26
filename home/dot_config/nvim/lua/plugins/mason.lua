@@ -1,6 +1,5 @@
 return {
-    "williamboman/mason.nvim",
-    version = "*",
-    lazy = false,
+  "williamboman/mason.nvim",
+  version = "*",
+  lazy = false,
 }
-

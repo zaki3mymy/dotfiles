@@ -1,8 +1,7 @@
 -- カラースキーマ(Catppuccin)
 return {
-    -- カラースキーマ(Catppuccin)
-    "catppuccin/nvim",
-    name = "catppuccin",
-    priority = 1000,
+  -- カラースキーマ(Catppuccin)
+  "catppuccin/nvim",
+  name = "catppuccin",
+  priority = 1000,
 }
-

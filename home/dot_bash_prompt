@@ -1,3 +1,4 @@
+#!/bin/bash
 SHORTEN_LENGTH=3
 
 __shorten_parent() {
@@ -9,11 +10,11 @@ __shorten_parent() {
 
   # 後でjoinすることを考えて先頭の`/`を除去
   pwd=${pwd#"/"}
-  IFS='/' read -ra array <<< $pwd
+  IFS='/' read -ra array <<<"$pwd"
 
   local dir=""
   for d in "${array[@]}"; do
-    if [ ${array[-1]} == $d ] || [ ${#d} -le $max_length ] ; then
+    if [ "${array[-1]}" == "$d" ] || [ ${#d} -le "$max_length" ]; then
       # カレントディレクトリは省略しない
       # 親ディレクトリでも最大文字数以内なら省略しない
       dir=$dir/$d
@@ -21,7 +22,7 @@ __shorten_parent() {
       dir="$dir/${d:0:${max_length}}"
     fi
   done
-  echo $dir
+  echo "$dir"
 }
 
 left_prompt() {
@@ -34,7 +35,7 @@ left_prompt() {
   if [[ "$pwd" == "${home}" ]] || [[ "$pwd" =~ ${home}/.+ ]]; then
     # ホームディレクトリ以下を省略
     prefix="~"
-    dir="${pwd#${home}}"
+    dir="${pwd#"${home}"}"
   else
     dir="$pwd"
   fi
@@ -42,9 +43,9 @@ left_prompt() {
   dir=${prefix}$(__shorten_parent "$dir" $SHORTEN_LENGTH)
 
   local branch
-  branch="[$(git branch --show-current 2>/dev/null)]"
-  if [ $? -ne 0 ]; then
-    branch=
+  branch="$(git branch --show-current 2>/dev/null)"
+  if [ -n "$branch" ]; then
+    branch="[$branch]"
   fi
 
   # ディレクトリは緑、ブランチは黄、`$`は青
@@ -69,5 +70,7 @@ right_prompt() {
     "$((cols - ${#time} + 1))" "$time"
 }
 
-export PS0='$(right_prompt)'
-export PS1='$(left_prompt)'
+PS0=$(right_prompt)
+PS1='$(left_prompt)'
+export PS0
+export PS1

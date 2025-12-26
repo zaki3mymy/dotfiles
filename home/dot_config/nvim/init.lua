@@ -10,4 +10,3 @@ require("config.terminal")
 require("config.git")
 require("config.mini")
 require("config.lsp")
-

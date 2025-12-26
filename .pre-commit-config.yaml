@@ -1,0 +1,26 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: [--fix=lf]
+  - repo: https://github.com/JohnnyMorganz/StyLua
+    rev: v2.3.1
+    hooks:
+      - id: stylua-system
+  - repo: local
+    hooks:
+      - id: shellcheck
+        name: Lint shell script
+        language: system
+        entry: shellcheck
+        files: '^(.+\.sh|.*bash.*)$'
+      - id: shfmt
+        name: Format shell script
+        language: system
+        entry: shfmt -d -w
+        files: '^(.+\.sh|.*bash.*)$'

@@ -46,4 +46,3 @@
     vacuum-branch = "!f () { git checkout $1; git branch --merged|egrep -v '\\*|develop|main'|xargs git branch -d; };f"
     # https://zenn.dev/scirexs/articles/3f3426c85c8fe6
     vacuum = "!f () { git reflog expire --expire-unreachable=now --all; git gc --prune=now; };f"
-

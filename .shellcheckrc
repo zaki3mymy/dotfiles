@@ -1,0 +1,3 @@
+# ホームディレクトリを参照できるようにする
+external-sources=true
+source-path=/root
