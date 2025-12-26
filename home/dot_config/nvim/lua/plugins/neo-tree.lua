@@ -35,5 +35,5 @@ return {
         vim.keymap.set("n", "l", "<C-w>>", opts)
       end,
     })
-  end
+  end,
 }

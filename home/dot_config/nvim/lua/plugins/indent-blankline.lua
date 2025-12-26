@@ -34,5 +34,5 @@ return {
         char = "▏",
       },
     })
-  end
+  end,
 }
