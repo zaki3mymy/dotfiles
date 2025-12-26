@@ -17,3 +17,10 @@ repos:
     hooks:
       - id: shellcheck
         args: ["--severity=warning"]
+  - repo: local
+    hooks:
+      - id: shfmt
+        name: Format shell script
+        language: system
+        entry: shfmt -d
+        files: '^.*/.+\.sh$'
