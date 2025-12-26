@@ -18,9 +18,9 @@ repos:
         name: Lint shell script
         language: system
         entry: shellcheck
-        files: '^.+\.sh$'
+        files: '^(.+\.sh|.*bash.*)$'
       - id: shfmt
         name: Format shell script
         language: system
         entry: shfmt -d
-        files: '^.+\.sh$'
+        files: '^(.+\.sh|.*bash.*)$'
