@@ -3,7 +3,6 @@ require("init_lazy")
 
 require("config.color-schema")
 require("config.tabs")
-require("config.indent")
 require("config.terminal")
 require("config.mini")
 require("config.lsp")
