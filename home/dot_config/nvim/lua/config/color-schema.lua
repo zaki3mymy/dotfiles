@@ -1,3 +1,2 @@
--- カラースキーマ(Catppuccin)の設定
-require("catppuccin").setup()
+-- カラースキーマの設定
 vim.cmd.colorscheme("catppuccin")
