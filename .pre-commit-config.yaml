@@ -12,13 +12,13 @@ repos:
     rev: v2.3.1
     hooks:
       - id: stylua-system
-  - repo: https://github.com/koalaman/shellcheck-precommit
-    rev: v0.7.2
-    hooks:
-      - id: shellcheck
-        args: ["--severity=warning"]
   - repo: local
     hooks:
+      - id: shellcheck
+        name: Lint shell script
+        language: system
+        entry: shellcheck
+        files: '^.*/.+\.sh$'
       - id: shfmt
         name: Format shell script
         language: system
