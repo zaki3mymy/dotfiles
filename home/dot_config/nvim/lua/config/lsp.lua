@@ -1,45 +1,45 @@
 local lsp_servers = {
-    -- 3.16.0 ではうまく起動しない
-    -- https://github.com/LuaLS/lua-language-server/issues/3301
-    "lua_ls@3.15.0",
+  -- 3.16.0 ではうまく起動しない
+  -- https://github.com/LuaLS/lua-language-server/issues/3301
+  "lua_ls@3.15.0",
 }
 local diagnostics = {
-    "typos_lsp",
+  "typos_lsp",
 }
 local ensure_installed = vim.iter({ lsp_servers, diagnostics }):flatten():totable()
 
 require("mason").setup()
 require("mason-lspconfig").setup({
-    automatic_installation = true,
-    ensure_installed = ensure_installed,
+  automatic_installation = true,
+  ensure_installed = ensure_installed,
 })
 
 vim.lsp.config("lua_ls", {
-    cmd = { vim.fn.stdpath("data") .. "/mason/bin/lua-language-server" },
-    filetypes = { "lua" },
-    -- `vim`キーワードの警告対応
-    settings = {
-        Lua = {
-            workspace = {
-                library = {
-                    vim.env.VIMRUNTIME .. "/lua",
-                }
-            }
-        }
+  cmd = { vim.fn.stdpath("data") .. "/mason/bin/lua-language-server" },
+  filetypes = { "lua" },
+  -- `vim`キーワードの警告対応
+  settings = {
+    Lua = {
+      workspace = {
+        library = {
+          vim.env.VIMRUNTIME .. "/lua",
+        },
+      },
     },
+  },
 })
 vim.lsp.enable(ensure_installed)
 if vim.uv.fs_stat(vim.fn.getcwd() .. "/.venv/bin/ruff") then
-    vim.lsp.config("ruff", {
-        cmd = { "uv", "run", "ruff", "server" },
-    })
-    vim.lsp.enable("ruff")
+  vim.lsp.config("ruff", {
+    cmd = { "uv", "run", "ruff", "server" },
+  })
+  vim.lsp.enable("ruff")
 end
 if vim.uv.fs_stat(vim.fn.getcwd() .. "/.venv/bin/ty") then
-    vim.lsp.config("ty", {
-        cmd = { "uv", "run", "ty", "server" },
-    })
-    vim.lsp.enable("ty")
+  vim.lsp.config("ty", {
+    cmd = { "uv", "run", "ty", "server" },
+  })
+  vim.lsp.enable("ty")
 end
 
 -- キーマップの設定
@@ -58,38 +58,38 @@ vim.keymap.set("n", "gn", "<cmd>lua vim.lsp.buf.rename()<CR>")
 
 -- 自動補完の設定
 -- lspの設定後に追加
-vim.cmd[[set completeopt+=menu,menuone,noselect]]
+vim.cmd([[set completeopt+=menu,menuone,noselect]])
 local cmp = require("cmp")
 cmp.setup({
-    mapping = cmp.mapping.preset.insert({
-        ["<C-p>"] = cmp.mapping.select_prev_item(),
-        ["<C-n>"] = cmp.mapping.select_next_item(),
-        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-Space>"] = cmp.mapping.complete(),
-        ["<C-e>"] = cmp.mapping.close(),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
-    }),
-    sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-    }, {
-        { name = "buffer" },
-    })
+  mapping = cmp.mapping.preset.insert({
+    ["<C-p>"] = cmp.mapping.select_prev_item(),
+    ["<C-n>"] = cmp.mapping.select_next_item(),
+    ["<C-d>"] = cmp.mapping.scroll_docs(-4),
+    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<C-e>"] = cmp.mapping.close(),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+  }),
+  sources = cmp.config.sources({
+    { name = "nvim_lsp" },
+  }, {
+    { name = "buffer" },
+  }),
 })
 
 -- 自動フォーマット
 vim.api.nvim_create_autocmd("LspAttach", {
-    callback = function(args)
-        local bufnr = args.buf
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
+  callback = function(args)
+    local bufnr = args.buf
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-        if client.server_capabilities.documentFormattingProvider then
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                buffer = bufnr,
-                callback = function()
-                    vim.lsp.buf.format({ bufnr = bufnr })
-                end,
-            })
-        end
-    end,
+    if client.server_capabilities.documentFormattingProvider then
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format({ bufnr = bufnr })
+        end,
+      })
+    end
+  end,
 })
