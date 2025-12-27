@@ -11,9 +11,4 @@ return {
       options = {},
     })
   end,
-  keys = {
-    { "<leader>l", "<Cmd>bnext<CR>", mode = { "n", "i" } },
-    { "<leader>h", "<Cmd>bprev<CR>", mode = { "n", "i" } },
-    { "<leader>w", "<Cmd>bw<CR>", mode = { "n", "i" } },
-  },
 }
