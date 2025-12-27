@@ -1,5 +1,9 @@
 vim.keymap.set("n", ";", ":", { noremap = true, desc = "Command mode" })
 
+-- 画面分割
+vim.keymap.set("n", "|", "<Cmd>vsplit<CR>", { noremap = true, desc = "Vertical split" })
+vim.keymap.set("n", "_", "<Cmd>split<CR>", { noremap = true, desc = "Horizontal split" })
+
 -- ページ移動
 vim.keymap.set("i", "<C-f>", "<C-o><C-f>", { noremap = true, desc = "Page down" })
 vim.keymap.set("i", "<C-b>", "<C-o><C-b>", { noremap = true, desc = "Page up" })
