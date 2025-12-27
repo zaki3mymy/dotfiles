@@ -6,9 +6,6 @@ vim.opt.shiftwidth = 4
 vim.opt.autoindent = true
 vim.opt.smartindent = true
 
--- mode切り替え
-vim.keymap.set("i", "jj", "<Esc>", { noremap = true, silent = true })
-
 -- クリップボード
 vim.opt.clipboard:append("unnamedplus")
 
@@ -20,10 +17,6 @@ vim.opt.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
 vim.api.nvim_set_hl(0, "CursorColumn", { bg = "#21223a" })
-
--- Ctrl-S 保存
-vim.keymap.set("n", "<C-s>", "<Cmd>w<CR>", { silent = true })
-vim.keymap.set("i", "<C-s>", "<Esc><Cmd>w<CR>a", { silent = true })
 
 -- h,l で行跨ぎ
 vim.opt.whichwrap = { ["<"] = true, [">"] = true, h = true, l = true }
