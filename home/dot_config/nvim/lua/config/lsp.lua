@@ -13,18 +13,23 @@ vim.lsp.config("lua_ls", {
     },
   },
 })
-if vim.uv.fs_stat(vim.fn.getcwd() .. "/.venv/bin/ruff") then
-  vim.lsp.config("ruff", {
-    cmd = { "uv", "run", "ruff", "server" },
-  })
-  vim.lsp.enable("ruff")
-end
-if vim.uv.fs_stat(vim.fn.getcwd() .. "/.venv/bin/ty") then
-  vim.lsp.config("ty", {
-    cmd = { "uv", "run", "ty", "server" },
-  })
-  vim.lsp.enable("ty")
-end
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "python",
+  callback = function()
+    if vim.uv.fs_stat(vim.fn.getcwd() .. "/.venv/bin/ruff") then
+      vim.lsp.config("ruff", {
+        cmd = { "uv", "run", "ruff", "server" },
+      })
+      vim.lsp.enable("ruff")
+    end
+    if vim.uv.fs_stat(vim.fn.getcwd() .. "/.venv/bin/ty") then
+      vim.lsp.config("ty", {
+        cmd = { "uv", "run", "ty", "server" },
+      })
+      vim.lsp.enable("ty")
+    end
+  end,
+})
 
 -- 自動フォーマット
 vim.api.nvim_create_autocmd("LspAttach", {
