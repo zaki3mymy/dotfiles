@@ -16,17 +16,25 @@ vim.lsp.config("lua_ls", {
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "python",
   callback = function()
-    if vim.uv.fs_stat(vim.fn.getcwd() .. "/.venv/bin/ruff") then
-      vim.lsp.config("ruff", {
-        cmd = { "uv", "run", "ruff", "server" },
+    local function set_py_lsp(name, command)
+      vim.lsp.config(name, {
+        cmd = command,
       })
-      vim.lsp.enable("ruff")
+      vim.lsp.enable(name)
+      -- pyproject.toml保存時に設定を再読込する
+      vim.api.nvim_create_autocmd("BufWritePost", {
+        pattern = "pyproject.toml",
+        callback = function()
+          vim.cmd("LspRestart " .. name)
+        end,
+      })
+    end
+
+    if vim.uv.fs_stat(vim.fn.getcwd() .. "/.venv/bin/ruff") then
+      set_py_lsp("ruff", { "uv", "run", "ruff", "server" })
     end
     if vim.uv.fs_stat(vim.fn.getcwd() .. "/.venv/bin/ty") then
-      vim.lsp.config("ty", {
-        cmd = { "uv", "run", "ty", "server" },
-      })
-      vim.lsp.enable("ty")
+      set_py_lsp("ty", { "uv", "run", "ty", "server" })
     end
   end,
 })
