@@ -15,7 +15,12 @@ return {
         insert = palette.sky,
         visual = palette.mauve,
       },
-      line_opacity = 0.25,
+      line_opacity = {
+        copy = 0.25,
+        delete = 0.25,
+        insert = 0.25,
+        visual = 0.5,
+      },
       set_cursor = true,
       set_cursorline = true,
       set_number = true,
