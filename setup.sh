@@ -78,7 +78,6 @@ function install_neovim() {
 
   # shellcheck disable=SC2016
   echo 'export PATH=$PATH:/opt/nvim-linux-x86_64/bin' >>~/.bashrc
-  echo "alias vi='nvim'" >>~/.bashrc
 
   # telescope.nvim の live_grep を使うためにインストール
   apt install -y ripgrep
