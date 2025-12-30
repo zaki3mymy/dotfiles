@@ -30,8 +30,8 @@ function initialize_dotfiles() {
   ${chezmoi_cmd} init zaki3mymy --branch main
   ${chezmoi_cmd} apply
 
-  # remove chezmoi binary
-  rm -f "${chezmoi_cmd}"
+  # # remove chezmoi binary
+  # rm -f "${chezmoi_cmd}"
 }
 
 function install_git_secrets() {
