@@ -76,7 +76,8 @@ function install_neovim() {
   tar -C /opt -xzf nvim-linux-x86_64.tar.gz
   rm -f nvim-linux-x86_64.tar.gz
 
-  echo "export PATH=$PATH:/opt/nvim-linux-x86_64/bin" >>~/.bashrc
+  # shellcheck disable=SC2016
+  echo 'export PATH=$PATH:/opt/nvim-linux-x86_64/bin' >>~/.bashrc
   echo "alias vi='nvim'" >>~/.bashrc
 
   # telescope.nvim の live_grep を使うためにインストール
