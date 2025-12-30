@@ -30,8 +30,8 @@ function initialize_dotfiles() {
   ${chezmoi_cmd} init zaki3mymy --branch main
   ${chezmoi_cmd} apply
 
-  # remove chezmoi binary
-  rm -f "${chezmoi_cmd}"
+  # # remove chezmoi binary
+  # rm -f "${chezmoi_cmd}"
 }
 
 function install_git_secrets() {
@@ -76,8 +76,8 @@ function install_neovim() {
   tar -C /opt -xzf nvim-linux-x86_64.tar.gz
   rm -f nvim-linux-x86_64.tar.gz
 
-  echo "export PATH=$PATH:/opt/nvim-linux-x86_64/bin" >>~/.bashrc
-  echo "alias vi='nvim'" >>~/.bashrc
+  # shellcheck disable=SC2016
+  echo 'export PATH=$PATH:/opt/nvim-linux-x86_64/bin' >>~/.bashrc
 
   # telescope.nvim の live_grep を使うためにインストール
   apt install -y ripgrep
