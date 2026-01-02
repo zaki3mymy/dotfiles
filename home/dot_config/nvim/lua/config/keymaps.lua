@@ -17,8 +17,8 @@ vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { noremap = true, desc = "Change to
 vim.keymap.set({ "n", "i", "v" }, "<C-s>", "<Cmd>w<CR>", { noremap = true, desc = "Save file" })
 
 -- buffer
-vim.keymap.set("n", "<C-l>", "<Cmd>bnext<CR>", { noremap = true, desc = "Move to next buffer" })
-vim.keymap.set("n", "<C-h>", "<Cmd>bprev<CR>", { noremap = true, desc = "Move to prev buffer" })
+vim.keymap.set({ "n", "i" }, "<C-l>", "<Cmd>bnext<CR>", { noremap = true, desc = "Move to next buffer" })
+vim.keymap.set({ "n", "i" }, "<C-h>", "<Cmd>bprev<CR>", { noremap = true, desc = "Move to prev buffer" })
 vim.keymap.set("n", "<leader>w", "<Cmd>bw<CR>", { noremap = true, desc = "Close current buffer" })
 
 -- 検索ハイライトの解除
