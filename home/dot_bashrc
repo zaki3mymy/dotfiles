@@ -6,6 +6,8 @@ export EDITOR=nvim
 
 source "$HOME/.bash_prompt"
 
+export PATH="$PATH:$HOME/.tools"
+
 # ターミナル分割コマンド
 function ide() {
   tmux split-window -v -l 10
