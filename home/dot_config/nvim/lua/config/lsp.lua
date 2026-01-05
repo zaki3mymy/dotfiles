@@ -57,14 +57,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 
 -- 診断結果を表示する
-vim.o.updatetime = 500
-vim.diagnostic.config({ virtual_text = true })
-vim.api.nvim_create_autocmd("CursorHold", {
-  -- カーソルが概要箇所に来たらフロート表示する
-  callback = function()
-    vim.diagnostic.open_float(nil, {
-      focus = false,
-      scope = "cursor",
-    })
-  end,
+vim.diagnostic.config({
+  virtual_text = true,
+  float = {
+    border = "rounded",
+  },
 })
