@@ -29,6 +29,7 @@ vim.keymap.set("n", "<Esc><Esc>", "<Cmd>noh<CR>", { noremap = true, desc = "No s
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { noremap = true, desc = "Hover info" })
 vim.keymap.set("n", "gr", vim.lsp.buf.references, { noremap = true, desc = "Show references" })
 vim.keymap.set("n", "ge", vim.diagnostic.open_float, { noremap = true, desc = "Show Error" })
+vim.keymap.set("i", "<leader>s", vim.lsp.buf.signature_help, { noremap = true, desc = "Show Signature" })
 -- ジャンプ
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { noremap = true, desc = "Go to definition" })
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { noremap = true, desc = "Go to definition" })
