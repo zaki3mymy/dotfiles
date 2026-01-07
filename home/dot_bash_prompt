@@ -70,7 +70,7 @@ right_prompt() {
     "$((cols - ${#time} + 1))" "$time"
 }
 
-PS0=$(right_prompt)
+# PS0=$(right_prompt)
 PS1='$(left_prompt)'
-export PS0
+# export PS0
 export PS1
