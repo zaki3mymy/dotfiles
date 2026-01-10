@@ -4,6 +4,8 @@ export TERM=tmux-256color
 
 export EDITOR=nvim
 
+alias ls='ls --color=auto'
+
 source "$HOME/.bash_prompt"
 
 export PATH="$PATH:$HOME/.tools"
