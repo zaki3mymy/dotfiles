@@ -10,6 +10,6 @@ return {
     require("oil").setup()
   end,
   keys = {
-    { "<leader>o", "<Cmd>Oil<CR>", mode = "n" },
+    { "<leader>-", "<Cmd>Oil<CR>", mode = "n" },
   },
 }
