@@ -89,6 +89,26 @@ function install_volta() {
   ~/.volta/bin/volta install node@latest
 }
 
+function install_terraform() {
+  # terraform
+  # https://developer.hashicorp.com/terraform/install#linux
+  wget -O - https://apt.releases.hashicorp.com/gpg | gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+  echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(grep -oP '(?<=UBUNTU_CODENAME=).*' /etc/os-release || lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list
+  apt update && apt install terraform
+
+  # terraform-docs
+  # https://github.com/terraform-docs/terraform-docs
+  curl -Lo ./terraform-docs.tar.gz "https://github.com/terraform-docs/terraform-docs/releases/download/v0.21.0/terraform-docs-v0.21.0-$(uname)-amd64.tar.gz"
+  tar -xzf terraform-docs.tar.gz
+  chmod +x terraform-docs
+  mv terraform-docs /usr/local/bin/terraform-docs
+  rm -f terraform-docs.tar.gz
+
+  # tflint
+  # https://github.com/terraform-linters/tflint
+  curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
+}
+
 function main() {
   log "セットアップを開始します。"
   initialize
@@ -115,6 +135,9 @@ function main() {
 
   log "Volta, Node.js, npm をインストールします。"
   install_volta
+
+  log "terraformをインストールします。"
+  install_terraform
 }
 
 main
