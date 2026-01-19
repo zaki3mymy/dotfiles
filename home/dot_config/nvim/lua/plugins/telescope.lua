@@ -6,8 +6,23 @@ return {
     "nvim-lua/plenary.nvim",
   },
   config = function()
+    local ignore_patterns = {
+      ".git/",
+    }
     local builtin = require("telescope.builtin")
-    vim.keymap.set("n", "<C-p>", builtin.find_files, {})
-    vim.keymap.set("n", "<C-g>", builtin.live_grep, {})
+    vim.keymap.set("n", "<C-p>", function()
+      builtin.find_files({
+        hidden = true,
+        file_ignore_patterns = ignore_patterns,
+      })
+    end, {})
+    vim.keymap.set("n", "<C-g>", function()
+      builtin.live_grep({
+        file_ignore_patterns = ignore_patterns,
+        additional_args = {
+          "--hidden",
+        },
+      })
+    end, {})
   end,
 }
