@@ -109,6 +109,14 @@ function install_terraform() {
   curl -s https://raw.githubusercontent.com/terraform-linters/tflint/master/install_linux.sh | bash
 }
 
+function install_actionlint() {
+  # https://github.com/rhysd/actionlint/blob/v1.7.10/docs/install.md#download-script
+  # カレントディレクトリにインストールされるので移動しておく
+  pushd "$HOME/.local/bin"
+  bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+  popd
+}
+
 function main() {
   log "セットアップを開始します。"
   initialize
@@ -138,6 +146,9 @@ function main() {
 
   log "terraformをインストールします。"
   install_terraform
+
+  log "actionlintをインストールします。"
+  install_actionlint
 }
 
 main
