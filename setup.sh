@@ -17,7 +17,13 @@ function set_locale() {
 }
 
 function install_tools() {
-  apt install -y git curl zip unzip jq tmux
+  apt install -y git curl zip unzip jq
+}
+
+function install_tmux() {
+  apt install -y tmux
+  # install tmux plugin manager
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
 function initialize_dotfiles() {
@@ -125,6 +131,9 @@ function main() {
 
   log "コマンド群をインストールします。"
   install_tools
+
+  log "tmuxをインストールします。"
+  install_tmux
 
   log "設定ファイルをインストールします。"
   initialize_dotfiles
