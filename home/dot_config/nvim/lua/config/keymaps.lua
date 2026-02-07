@@ -24,6 +24,9 @@ vim.keymap.set("n", "<leader>q", "<Cmd>bw<CR>", { noremap = true, desc = "Close 
 -- 検索ハイライトの解除
 vim.keymap.set("n", "<Esc><Esc>", "<Cmd>noh<CR>", { noremap = true, desc = "No search highlight" })
 
+-- Redo
+vim.keymap.set("n", "U", "<C-r>", { noremap = true, desc = "Redo" })
+
 -- LSP
 -- 表示
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { noremap = true, desc = "Hover info" })
