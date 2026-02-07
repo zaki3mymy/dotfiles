@@ -21,6 +21,9 @@ vim.keymap.set({ "n", "i" }, "<C-l>", "<Cmd>bnext<CR>", { noremap = true, desc =
 vim.keymap.set({ "n", "i" }, "<C-h>", "<Cmd>bprev<CR>", { noremap = true, desc = "Move to prev buffer" })
 vim.keymap.set("n", "<leader>q", "<Cmd>bw<CR>", { noremap = true, desc = "Close current buffer" })
 
+-- window
+vim.keymap.set("n", "<leader>w", "<C-w>", { noremap = true, desc = "Window action" })
+
 -- 検索ハイライトの解除
 vim.keymap.set("n", "<Esc><Esc>", "<Cmd>noh<CR>", { noremap = true, desc = "No search highlight" })
 
