@@ -19,17 +19,26 @@ vim.keymap.set({ "n", "i", "v" }, "<C-s>", "<Cmd>w<CR>", { noremap = true, desc 
 -- buffer
 vim.keymap.set({ "n", "i" }, "<C-l>", "<Cmd>bnext<CR>", { noremap = true, desc = "Move to next buffer" })
 vim.keymap.set({ "n", "i" }, "<C-h>", "<Cmd>bprev<CR>", { noremap = true, desc = "Move to prev buffer" })
-vim.keymap.set("n", "<leader>w", "<Cmd>bw<CR>", { noremap = true, desc = "Close current buffer" })
+vim.keymap.set("n", "<leader>q", "<Cmd>bw<CR>", { noremap = true, desc = "Close current buffer" })
 
+-- window
+vim.keymap.set("n", "<leader>w", "<C-w>", { noremap = true, desc = "Window action" })
+
+-- 検索時にフォーカスした単語の行を真ん中にする
+vim.keymap.set("n", "n", "nzz", { noremap = true })
+vim.keymap.set("n", "N", "Nzz", { noremap = true })
 -- 検索ハイライトの解除
 vim.keymap.set("n", "<Esc><Esc>", "<Cmd>noh<CR>", { noremap = true, desc = "No search highlight" })
+
+-- Redo
+vim.keymap.set("n", "U", "<C-r>", { noremap = true, desc = "Redo" })
 
 -- LSP
 -- 表示
 vim.keymap.set("n", "K", vim.lsp.buf.hover, { noremap = true, desc = "Hover info" })
 vim.keymap.set("n", "gr", vim.lsp.buf.references, { noremap = true, desc = "Show references" })
 vim.keymap.set("n", "ge", vim.diagnostic.open_float, { noremap = true, desc = "Show Error" })
-vim.keymap.set("i", "<leader>s", vim.lsp.buf.signature_help, { noremap = true, desc = "Show Signature" })
+vim.keymap.set("i", "<leader>gs", vim.lsp.buf.signature_help, { noremap = true, desc = "Show Signature" })
 -- ジャンプ
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { noremap = true, desc = "Go to definition" })
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { noremap = true, desc = "Go to definition" })
