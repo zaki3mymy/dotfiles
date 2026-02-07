@@ -24,6 +24,9 @@ vim.keymap.set("n", "<leader>q", "<Cmd>bw<CR>", { noremap = true, desc = "Close 
 -- window
 vim.keymap.set("n", "<leader>w", "<C-w>", { noremap = true, desc = "Window action" })
 
+-- 検索時にフォーカスした単語の行を真ん中にする
+vim.keymap.set("n", "n", "nzz", { noremap = true })
+vim.keymap.set("n", "N", "Nzz", { noremap = true })
 -- 検索ハイライトの解除
 vim.keymap.set("n", "<Esc><Esc>", "<Cmd>noh<CR>", { noremap = true, desc = "No search highlight" })
 
