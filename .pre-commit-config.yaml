@@ -23,4 +23,9 @@ repos:
         name: Format shell script
         language: system
         entry: shfmt -d -w
-        files: '^(.+\.sh|.*bash.*)$'
+        files: '^(.+\.sh|.*zsh.*)$'
+      - id: zsh-syntax-check
+        name: Syntax check zsh script
+        language: system
+        entry: zsh -n
+        files: '^.*zsh.*$'

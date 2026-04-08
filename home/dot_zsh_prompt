@@ -1,0 +1,15 @@
+function setPrompt {
+  # %F{color}%f … 色を変える
+  # %~ … カレントディレクトリからの相対パス
+  # %# … プロンプト
+  branch=" %F{yellow}($(git branch --show-current 2>/dev/null))%f"
+  if [ $? -ne 0 ]; then
+    branch=""
+  fi
+  # (%?.foo.bar) … 前回の終了コードが0ならfoo、それ以外ならbar
+  echo "%F{green}%~%f$branch %(?.%F{blue}.%F{red})
+%#%f "
+}
+
+setopt prompt_subst
+export PROMPT='`setPrompt`'

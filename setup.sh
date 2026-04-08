@@ -26,6 +26,11 @@ function install_tmux() {
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 }
 
+function install_zsh() {
+  apt install -y zsh
+  chsh -s "$(which zsh)"
+}
+
 function initialize_dotfiles() {
   # install chezmoi
   local bin_dir="${HOME}/.local/bin"
@@ -83,7 +88,7 @@ function install_neovim() {
   rm -f nvim-linux-x86_64.tar.gz
 
   # shellcheck disable=SC2016
-  echo 'export PATH=$PATH:/opt/nvim-linux-x86_64/bin' >>~/.bashrc
+  echo 'export PATH=$PATH:/opt/nvim-linux-x86_64/bin' >>~/.zshrc
 
   # telescope.nvim の live_grep を使うためにインストール
   apt install -y ripgrep
@@ -132,6 +137,9 @@ function main() {
   log "コマンド群をインストールします。"
   install_tools
 
+  log "zshをインストールします。"
+  install_zsh
+
   log "tmuxをインストールします。"
   install_tmux
 
@@ -161,6 +169,5 @@ function main() {
 }
 
 main
-source "$HOME/.bashrc"
 
 log "インストールが完了しました。\`gh auth login\`を実行してセットアップを完了してください。"
