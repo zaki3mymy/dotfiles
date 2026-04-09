@@ -8,6 +8,7 @@ alias ls='ls --color=auto'
 source "$HOME/.zsh_prompt"
 
 export PATH="$PATH:$HOME/.tools"
+export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
 # ターミナル分割コマンド
 function ide() {

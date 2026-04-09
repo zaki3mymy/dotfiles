@@ -87,9 +87,6 @@ function install_neovim() {
   tar -C /opt -xzf nvim-linux-x86_64.tar.gz
   rm -f nvim-linux-x86_64.tar.gz
 
-  # shellcheck disable=SC2016
-  echo 'export PATH=$PATH:/opt/nvim-linux-x86_64/bin' >>~/.zshrc
-
   # telescope.nvim の live_grep を使うためにインストール
   apt install -y ripgrep
 }
