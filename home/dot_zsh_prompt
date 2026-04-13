@@ -7,8 +7,8 @@ function setPrompt {
     branch=""
   fi
   # (%?.foo.bar) … 前回の終了コードが0ならfoo、それ以外ならbar
-  echo "%F{green}%~%f$branch %(?.%F{blue}.%F{red})
-%#%f "
+  echo "%F{green}%~%f %(?.%F{blue}.%F{red})[%?]%f$branch
+%(?.%F{blue}.%F{red})%#%f "
 }
 
 setopt prompt_subst
