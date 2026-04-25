@@ -1,0 +1,9 @@
+# git
+abbr -S 'git co'='git commit -v'
+abbr -S 'git coa'='git commit -a -v'
+abbr -S 'git cono'='git commit --amend --no-edit'
+abbr -S 'git ch'='git checkout'
+abbr -S 'git sw'='git switch'
+abbr -S 'git br'='git branch'
+abbr -S 'git di'='git diff'
+abbr -S 'git diffs'='git diff --staged'
