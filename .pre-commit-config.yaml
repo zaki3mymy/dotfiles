@@ -29,3 +29,9 @@ repos:
         language: system
         entry: zsh -n
         files: '^.*zsh.*$'
+
+      - id: nix-fmt
+        name: Format .nix files
+        language: system
+        entry: nixfmt
+        files: '^.*\.nix$'
