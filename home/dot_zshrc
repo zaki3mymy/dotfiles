@@ -1,6 +1,4 @@
-# 補完有効化
-autoload -Uz compinit
-compinit
+[ -f "$HOME/.config/zsh/.zshrc" ] && source "$HOME/.config/zsh/.zshrc"
 
 export LANG=ja_JP.UTF-8
 export TERM=tmux-256color
