@@ -24,7 +24,6 @@ function ide() {
 source "$HOME/.zsh_abbr" >/dev/null
 
 # uv
-source "$HOME/.local/bin/env"
 eval "$(uv generate-shell-completion zsh)"
 
 # Volta
