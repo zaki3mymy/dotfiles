@@ -63,6 +63,7 @@
 
     # Go
     go
+    gopls
     golangci-lint
 
     # IaC
