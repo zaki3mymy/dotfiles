@@ -11,6 +11,9 @@ alias ls='ls --color=auto'
 
 source "$HOME/.zsh_prompt"
 
+# tmux内で逆検索ができなかったので追加
+bindkey "^R" history-incremental-search-backward
+
 export PATH="$PATH:$HOME/.tools"
 export PATH="$PATH:/opt/nvim-linux-x86_64/bin"
 
