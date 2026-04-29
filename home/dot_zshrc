@@ -25,3 +25,6 @@ source "$HOME/.zsh_abbr" >/dev/null
 
 # uv
 eval "$(uv generate-shell-completion zsh)"
+
+# direnv
+eval "$(direnv hook zsh)"

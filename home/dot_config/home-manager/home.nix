@@ -35,6 +35,7 @@
   home.packages = with pkgs; [
     actionlint
     curl
+    direnv
     git
     git-secrets
     gh
