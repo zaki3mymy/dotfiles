@@ -42,7 +42,7 @@ vim.keymap.set("i", "<leader>gs", vim.lsp.buf.signature_help, { noremap = true, 
 -- ジャンプ
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { noremap = true, desc = "Go to definition" })
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { noremap = true, desc = "Go to definition" })
-vim.keymap.set("n", "gt", "<C-t>", { noremap = true, desc = "Jump back" })
+vim.keymap.set("n", "gb", "<C-t>", { noremap = true, desc = "Jump back" })
 -- 編集
 vim.keymap.set({ "n", "i" }, "<F2>", vim.lsp.buf.rename, { noremap = true, desc = "Rename symbol" })
 vim.keymap.set("n", "gf", vim.lsp.buf.format, { noremap = true, desc = "Format buffer" })
