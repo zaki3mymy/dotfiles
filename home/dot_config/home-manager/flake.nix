@@ -10,7 +10,7 @@
   outputs =
     { nixpkgs, home-manager, ... }:
     {
-      homeConfigurations."root" = home-manager.lib.homeManagerConfiguration {
+      homeConfigurations."zaki3mymy" = home-manager.lib.homeManagerConfiguration {
         pkgs = nixpkgs.legacyPackages."x86_64-linux";
         modules = [ ./home.nix ];
       };

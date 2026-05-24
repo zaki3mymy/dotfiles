@@ -1,7 +1,7 @@
 { pkgs, config, ... }:
 {
-  home.username = "root";
-  home.homeDirectory = "/root";
+  home.username = "zaki3mymy";
+  home.homeDirectory = "/home/zaki3mymy";
   home.stateVersion = "25.11";
 
   # zshを有効化
