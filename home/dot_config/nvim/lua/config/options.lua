@@ -42,7 +42,7 @@ vim.opt.hidden = true
 -- 不可視文字の表示
 vim.opt.list = true
 vim.opt.listchars = {
-  tab = "->",
+  tab = "――›",
   trail = "␣",
   nbsp = "␣",
   extends = "❯",
