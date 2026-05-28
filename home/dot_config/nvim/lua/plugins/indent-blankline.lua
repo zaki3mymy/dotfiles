@@ -32,6 +32,11 @@ return {
       indent = {
         highlight = highlight,
         char = "▏",
+        tab_char = "▏",
+      },
+      scope = {
+        enabled = true,
+        char = "▎",
       },
     })
   end,
