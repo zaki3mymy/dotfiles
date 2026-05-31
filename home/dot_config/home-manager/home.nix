@@ -48,6 +48,7 @@
     git
     git-secrets
     gh
+    gnumake
     neovim
     pre-commit
     ripgrep
