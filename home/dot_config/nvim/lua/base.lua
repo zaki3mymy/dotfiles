@@ -23,7 +23,7 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
 
 -- WSL クリップボード設定
 -- https://zenn.dev/link/comments/95d56a62268c6f
-if vim.fn.has "wsl" == 1 then
+if vim.fn.has("wsl") == 1 then
   vim.g.clipboard = {
     name = "win32yank",
     copy = {
