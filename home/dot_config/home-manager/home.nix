@@ -31,8 +31,6 @@
   # デフォルトシェルをzshに
   home.sessionVariables = {
     SHELL = "${pkgs.zsh}/bin/zsh";
-    # WSLでリンクをブラウザで開くための設定
-    BROWSER = "/mnt/c/Windows/System32/rundll32.exe url.dll,FileProtocolHandler";
   };
 
   # zsh-abbr は非商用利用のみ(cc-by-nc-sa-40 hl3)なので特別に許可する

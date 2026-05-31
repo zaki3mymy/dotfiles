@@ -46,6 +46,10 @@
     pkgs.chezmoi
     pkgs.xdg-utils
   ];
+  environment.sessionVariables = rec {
+    # WSLでターミナルからブラウザを開く設定
+    BROWSER = "/mnt/c/Windows/System32/rundll32.exe url.dll,FileProtocolHandler";
+  };
 
   time.timeZone = "Asia/Tokyo";
 
