@@ -53,6 +53,15 @@
 
   time.timeZone = "Asia/Tokyo";
 
+  system.activationScripts.myScript = {
+    text = ''
+      # https://zenn.dev/junkor/articles/cf64671f4fc637
+      if [ ! -S "$XDG_RUNTIME_DIR/wayland-0" ]; then
+          ln -s /mnt/wslg/runtime-dir/wayland-0* "$XDG_RUNTIME_DIR"
+      fi
+    '';
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It's perfectly fine and recommended to leave
