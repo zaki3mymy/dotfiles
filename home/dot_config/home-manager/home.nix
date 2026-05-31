@@ -17,6 +17,15 @@
       # chezmoiの.zshrcを活かすためにこの設定が必要
       export ZDOTDIR="$HOME"
     '';
+    loginExtra = ''
+      # WSLg Wayland socket symlinks
+      if [ -d /mnt/wslg/runtime-dir ]; then
+        for sock in /mnt/wslg/runtime-dir/wayland-0*; do
+          target="$XDG_RUNTIME_DIR/$(basename $sock)"
+          [ ! -e "$target" ] && ln -s "$sock" "$target"
+        done
+      fi
+    '';
   };
 
   # デフォルトシェルをzshに
