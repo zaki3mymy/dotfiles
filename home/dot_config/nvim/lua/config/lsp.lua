@@ -39,6 +39,16 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "go",
+  callback = function()
+    vim.lsp.config("gopls", {
+      cmd = { "gopls", "serve" },
+    })
+    vim.lsp.enable("gopls")
+  end,
+})
+
 -- 自動フォーマット
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
