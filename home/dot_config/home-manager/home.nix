@@ -80,7 +80,11 @@
     # IaC
     tenv
 
+    # Cloud
+    awscli2
+
     # JavaScript / TypeScript
+    nodejs
     pnpm
 
     # AI
