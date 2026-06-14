@@ -15,6 +15,7 @@ allowed-tools: Read Grep Write Bash
 
 ファイルの内容は以下のテンプレートに従う。
 `created_at` はIssue作成日時をフォーマットに従い記載する。
+日時は `date '+%Y-%m-%d %H:%M:%S'` を Bash で実行して取得する。
 `completed_at`は空欄とし、完了時に日時を埋めることとする。
 
 ```

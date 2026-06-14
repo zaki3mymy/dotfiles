@@ -1,0 +1,70 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+usage() {
+  echo "Usage: issue-worktree <issue-file> <test-command>" >&2
+  echo "  Example: issue-worktree issues/0001-fix-api.md pytest" >&2
+  exit 1
+}
+
+[ $# -lt 2 ] && usage
+
+ISSUE_FILE="$1"
+TEST_CMD="$2"
+
+# リポジトリルートを取得
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+
+# Issueファイルをリポジトリルートからの相対パスに正規化
+ISSUE_ABS="$(realpath "$ISSUE_FILE")"
+ISSUE_REL="${ISSUE_ABS#"$REPO_ROOT"/}"
+
+if [ ! -f "$ISSUE_ABS" ]; then
+  echo "Error: Issue file not found: $ISSUE_FILE" >&2
+  exit 1
+fi
+
+# frontmatterから branch を抽出
+BRANCH="$(awk '/^---/{f=!f; next} f && /^branch:/{print $2}' "$ISSUE_ABS")"
+
+if [ -z "$BRANCH" ]; then
+  echo "Error: 'branch' field is empty or missing in $ISSUE_FILE" >&2
+  exit 1
+fi
+
+WINDOW_NAME="$(basename "$ISSUE_FILE" .md)"
+WORKTREE_PATH="$(dirname "$REPO_ROOT")/wt-${BRANCH//\//-}"
+
+# Worktreeの作成（既存ブランチがある場合はそのまま使う）
+if git worktree list | grep -q "$WORKTREE_PATH"; then
+  echo "Worktree already exists: $WORKTREE_PATH"
+elif git branch --list "$BRANCH" | grep -q "$BRANCH"; then
+  echo "Branch '$BRANCH' already exists, adding worktree..."
+  git worktree add "$WORKTREE_PATH" "$BRANCH"
+else
+  git worktree add "$WORKTREE_PATH" -b "$BRANCH"
+fi
+
+# pre-commit のセットアップ
+if [ -f "$REPO_ROOT/.pre-commit-config.yaml" ]; then
+  echo "Running pre-commit install in worktree..."
+  (cd "$WORKTREE_PATH" && pre-commit install)
+fi
+
+# tmuxセッションの作成（なければ）
+if ! tmux has-session -t claude-code 2>/dev/null; then
+  tmux new-session -d -s claude-code
+fi
+
+# tmuxウィンドウを作成してClaude Codeを起動
+tmux new-window -t claude-code -n "$WINDOW_NAME" -c "$WORKTREE_PATH" \
+  "claude --agent issue-workflow-orchestrator '${ISSUE_REL} ${TEST_CMD}'; exec zsh"
+
+echo ""
+echo "Started:"
+echo "  Issue:    $ISSUE_REL"
+echo "  Branch:   $BRANCH"
+echo "  Worktree: $WORKTREE_PATH"
+echo "  Window:   claude-code:$WINDOW_NAME"
+echo ""
+echo "Attach with: tmux attach -t claude-code"
