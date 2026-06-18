@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 {
   home.username = "zaki3mymy";
   home.homeDirectory = "/home/zaki3mymy";
@@ -17,16 +22,12 @@
       # chezmoiの.zshrcを活かすためにこの設定が必要
       export ZDOTDIR="$HOME"
     '';
-    loginExtra = ''
-      # WSLg Wayland socket symlinks
-      if [ -d /mnt/wslg/runtime-dir ]; then
-        for sock in /mnt/wslg/runtime-dir/wayland-0*; do
-          target="$XDG_RUNTIME_DIR/$(basename $sock)"
-          [ ! -e "$target" ] && ln -s "$sock" "$target"
-        done
-      fi
-    '';
   };
+
+  home.activation.waylandSocket = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    run ln -sf /mnt/wslg/runtime-dir/wayland-0 "$XDG_RUNTIME_DIR/wayland-0"
+    run ln -sf /mnt/wslg/runtime-dir/wayland-0.lock "$XDG_RUNTIME_DIR/wayland-0.lock"
+  '';
 
   # デフォルトシェルをzshに
   home.sessionVariables = {
