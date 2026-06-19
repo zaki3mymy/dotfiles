@@ -80,6 +80,7 @@
 
     # IaC
     tenv
+    tflint
 
     # Cloud
     awscli2
