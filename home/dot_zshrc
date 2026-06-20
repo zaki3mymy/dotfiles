@@ -29,3 +29,6 @@ eval "$(uv generate-shell-completion zsh)"
 
 # direnv
 eval "$(direnv hook zsh)"
+
+# WSL
+export BROWSER="/mnt/c/Windows/System32/rundll32.exe url.dll,FileProtocolHandler"
