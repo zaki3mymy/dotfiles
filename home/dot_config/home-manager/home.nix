@@ -46,6 +46,7 @@
     actionlint
     curl
     direnv
+    ffmpeg
     git
     git-secrets
     gh
