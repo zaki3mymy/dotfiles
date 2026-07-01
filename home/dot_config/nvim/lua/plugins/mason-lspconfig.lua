@@ -1,7 +1,7 @@
 return {
   "williamboman/mason-lspconfig.nvim",
   version = "*",
-  lazy = false,
+  event = "VeryLazy",
   config = function()
     local lsp_servers = {
       -- 3.16.0 ではうまく起動しない

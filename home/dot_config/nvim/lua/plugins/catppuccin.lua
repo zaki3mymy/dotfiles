@@ -2,6 +2,7 @@
 return {
   "catppuccin/nvim",
   name = "catppuccin",
+  event = "VimEnter",
   priority = 1000,
   config = function()
     require("catppuccin").setup({
@@ -13,7 +14,7 @@ return {
             LineNr = { fg = palette.overlay0 },
           }
         end,
-      }
+      },
     })
   end,
 }
