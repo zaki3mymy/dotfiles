@@ -2,6 +2,7 @@ return {
   {
     "nvim-mini/mini.pairs",
     version = false,
+    event = "VeryLazy",
     config = function()
       require("mini.pairs").setup()
     end,
@@ -9,6 +10,7 @@ return {
   {
     "nvim-mini/mini.surround",
     version = false,
+    event = "VeryLazy",
     config = function()
       require("mini.surround").setup()
     end,
@@ -16,6 +18,7 @@ return {
   {
     "nvim-mini/mini.map",
     version = false,
+    event = "BufReadPre",
     config = function()
       local map = require("mini.map")
       map.setup({

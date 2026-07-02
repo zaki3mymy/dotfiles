@@ -1,6 +1,7 @@
 return {
   {
     "hrsh7th/nvim-cmp",
+    event = "VeryLazy",
     config = function()
       -- 自動補完の設定
       -- lspの設定後に追加
@@ -24,6 +25,6 @@ return {
       })
     end,
   },
-  { "hrsh7th/cmp-nvim-lsp" },
-  { "hrsh7th/cmp-buffer" },
+  { "hrsh7th/cmp-nvim-lsp", event = "VeryLazy" },
+  { "hrsh7th/cmp-buffer", event = "VeryLazy" },
 }
