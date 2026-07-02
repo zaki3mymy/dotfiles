@@ -1,4 +1,5 @@
 # git
+abbr -S 'gti'='git'
 abbr -S 'git co'='git commit -v'
 abbr -S 'git coa'='git commit -a -v'
 abbr -S 'git cono'='git commit --amend --no-edit'
@@ -7,5 +8,10 @@ abbr -S 'git sw'='git switch'
 abbr -S 'git br'='git branch'
 abbr -S 'git di'='git diff'
 abbr -S 'git diff'='git diff -b'
+abbr -S 'git diffn'='git diff --name-only'
 abbr -S 'git diffs'='git diff --staged'
 abbr -S 'git stsh'='git stash show -p stash@{0}'
+abbr -S 'git s'='git status'
+abbr -S 'git merges'='git merge --squash --ff'
+
+abbr -S 'cl'='claude --agent issue-workflow-orchestrator'
