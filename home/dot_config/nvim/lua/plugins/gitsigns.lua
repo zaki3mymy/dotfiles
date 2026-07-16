@@ -54,5 +54,28 @@ return {
         map("n", "<leader>hi", gitsigns.preview_hunk_inline)
       end,
     })
+
+    -- blame の色を返る
+    -- ColorScheme読み込み後に適用する
+    local hl_opts = { fg = "#888888", italic = true }
+    vim.api.nvim_create_autocmd("ColorScheme", {
+      pattern = "*",
+      callback = function()
+        vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame", hl_opts)
+      end,
+    })
+
+    -- ブランチと比較するためのショートカット
+    vim.keymap.set("n", "<leader>gbc", function()
+      local branches = vim.fn.systemlist('git branch --format="%(refname:short)"')
+      vim.ui.select(branches, {
+        prompt = "Select compare branch:",
+      }, function(choice)
+        if choice then
+          require("gitsigns").change_base(choice)
+          -- vim.notify("Gitsigns base: " .. choice)
+        end
+      end)
+    end)
   end,
 }
