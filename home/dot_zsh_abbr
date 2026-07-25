@@ -1,3 +1,5 @@
+ABBR_SET_EXPANSION_CURSOR=1
+
 # git
 abbr -S 'gti'='git'
 abbr -S 'git co'='git commit -v'
@@ -13,5 +15,9 @@ abbr -S 'git diffs'='git diff --staged'
 abbr -S 'git stsh'='git stash show -p stash@{0}'
 abbr -S 'git s'='git status'
 abbr -S 'git merges'='git merge --squash --ff'
+
+# go
+abbr -S 'gocov'="go test -cover -coverprofile cover.out ./%"
+abbr -S 'gocovhtml'='go tool cover -html=cover.out -o cover.html'
 
 abbr -S 'cl'='claude --agent issue-workflow-orchestrator'
