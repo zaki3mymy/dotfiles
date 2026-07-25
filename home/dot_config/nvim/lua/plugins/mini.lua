@@ -37,13 +37,22 @@ return {
       vim.keymap.set("n", "<leader>mmt", map.toggle, { desc = "MiniMap.toggle" })
 
       local ignore_ft = {
+        [""] = true,
         ["gitcommit"] = true,
+        ["markdown"] = true,
+        ["oil"] = true,
       }
-      vim.api.nvim_create_autocmd({ "VimEnter", "BufReadPost" }, {
+      vim.api.nvim_create_autocmd({ "BufEnter" }, {
         callback = function()
           local bt = vim.bo.buftype
           local ft = vim.bo.filetype
-          if bt == "" and not ignore_ft[ft] then
+
+          if ignore_ft[ft] then
+            map.close()
+            return
+          end
+
+          if bt == "" then
             map.open()
           end
         end,
