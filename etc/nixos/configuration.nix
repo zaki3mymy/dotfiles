@@ -27,7 +27,10 @@
 
   users.users.zaki3mymy = {
     isNormalUser = true;
-    extraGroups = [ "wheel" ];
+    extraGroups = [
+      "wheel"
+      "podman"
+    ];
     shell = pkgs.zsh;
   };
 
@@ -45,6 +48,7 @@
     pkgs.vim
     pkgs.chezmoi
     pkgs.xdg-utils
+    pkgs.podman-compose
   ];
   environment.sessionVariables = rec {
     # WSLでターミナルからブラウザを開く設定
@@ -53,13 +57,14 @@
 
   time.timeZone = "Asia/Tokyo";
 
-  system.activationScripts.myScript = {
-    text = ''
-      # https://zenn.dev/junkor/articles/cf64671f4fc637
-      if [ ! -S "$XDG_RUNTIME_DIR/wayland-0" ]; then
-          ln -s /mnt/wslg/runtime-dir/wayland-0* "$XDG_RUNTIME_DIR"
-      fi
-    '';
+  # https://wiki.nixos.org/wiki/Podman
+  virtualisation = {
+    containers.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true; # Required for containers under podman-compose to be able to talk to each other.
+    };
   };
 
   # This value determines the NixOS release from which the default
