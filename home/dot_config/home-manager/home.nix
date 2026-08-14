@@ -32,6 +32,7 @@
   # デフォルトシェルをzshに
   home.sessionVariables = {
     SHELL = "${pkgs.zsh}/bin/zsh";
+    PLAYWRIGHT_CHROMIUM_EXECUTABLE_PATH = "${pkgs.chromium}/bin/chromium";
   };
 
   # zsh-abbr は非商用利用のみ(cc-by-nc-sa-40 hl3)なので特別に許可する
@@ -86,9 +87,10 @@
     # Cloud
     awscli2
 
-    # JavaScript / TypeScript
+    # web
     nodejs
     pnpm
+    chromium
 
     # AI
     claude-code
