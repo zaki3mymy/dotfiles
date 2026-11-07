@@ -1,0 +1,43 @@
+# for Windows: /Users/<username>/AppData/Roaming/alacritty/alacritty.toml
+[general]
+import = [
+  "/Users/<username>/AppData/Roaming/alacritty/<theme file>"
+]
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+dimensions = {
+  columns = 120,
+  lines = 30,
+}
+padding = {
+  x = 4,
+  y = 4,
+}
+decorations = "None"
+opacity = 0.9
+blur = true # macOS only
+
+[scrolling]
+history = 100000
+
+[font]
+size = 12
+normal = {
+  family = "Hack Nerd Font"
+}
+
+[selection]
+save_to_clipboard = true
+
+[cursor]
+style = {
+  shape = "Block",
+  blinking = "Always",
+}
+blink_interval = 500
+
+[terminal.shell]
+program = "/Windows/System32/wsl.exe ~ -d NixOS"
