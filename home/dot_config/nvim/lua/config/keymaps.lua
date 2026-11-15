@@ -21,7 +21,8 @@ vim.api.nvim_create_autocmd("VimEnter", {
     -- buffer
     vim.keymap.set({ "n", "i" }, "<C-l>", "<Cmd>bnext<CR>", { noremap = true, desc = "Move to next buffer" })
     vim.keymap.set({ "n", "i" }, "<C-h>", "<Cmd>bprev<CR>", { noremap = true, desc = "Move to prev buffer" })
-    vim.keymap.set("n", "<leader>q", "<Cmd>bw<CR>", { noremap = true, desc = "Close current buffer" })
+    -- https://stackoverflow.com/a/4468491
+    vim.keymap.set("n", "<leader>q", "<Cmd>bn<CR><Cmd>bw#<CR>", { noremap = true, desc = "Close current buffer" })
 
     -- window
     vim.keymap.set("n", "<leader>w", "<C-w>", { noremap = true, desc = "Window action" })
@@ -34,6 +35,16 @@ vim.api.nvim_create_autocmd("VimEnter", {
 
     -- Redo
     vim.keymap.set("n", "U", "<C-r>", { noremap = true, desc = "Redo" })
+
+    -- util
+    vim.keymap.set("n", "cap", function()
+      local path = vim.fn.expand("%:p")
+      vim.fn.setreg("+", path)
+    end, { desc = "Copy absolute file path to clipboard" })
+    vim.keymap.set("n", "crp", function()
+      local path = vim.fn.expand("%:.")
+      vim.fn.setreg("+", path)
+    end, { desc = "Copy relative file path to clipboard" })
 
     -- LSP
     -- 表示
@@ -52,6 +63,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
     vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { noremap = true, desc = "Go to definition" })
     vim.keymap.set("n", "gb", "<C-o>", { noremap = true, desc = "Jump back" })
     -- 編集
+    vim.keymap.set({ "n", "i" }, "<F2>", vim.lsp.buf.rename, { noremap = true, desc = "Rename symbol" })
     vim.keymap.set({ "n", "i" }, "<F2>", vim.lsp.buf.rename, { noremap = true, desc = "Rename symbol" })
     vim.keymap.set("n", "gf", vim.lsp.buf.format, { noremap = true, desc = "Format buffer" })
     vim.keymap.set({ "n", "i" }, "<A-S-f>", vim.lsp.buf.format, { noremap = true, desc = "Format buffer" })

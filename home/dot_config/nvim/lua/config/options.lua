@@ -27,6 +27,8 @@ vim.opt.wrapscan = true
 -- 上下オフセット
 vim.opt.scrolloff = 4
 
+vim.opt.scroll = 5
+
 -- showcmd（右下のコマンド表示）
 vim.opt.showcmd = true
 
@@ -53,9 +55,20 @@ vim.opt.listchars = {
 vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes" -- Gitsignsが使う記号列を常に表示
 vim.opt.cursorline = true
-vim.opt.cursorcolumn = true
+-- vim.opt.cursorcolumn = true
 vim.api.nvim_set_hl(0, "CursorColumn", { bg = "#21223a" })
 vim.opt.winborder = "rounded" -- hoverの枠線
 
 -- h,l で行跨ぎ
 vim.opt.whichwrap = { ["<"] = true, [">"] = true, h = true, l = true }
+
+-- .md のコードブロックでハイライトする
+vim.g.markdown_fenced_languages = {
+  "ts=typescript",
+  "js=javascript",
+  "python",
+  "go",
+  "lua",
+  "html",
+  "css",
+}

@@ -1,0 +1,7 @@
+function ghcd() {
+  local repo=$(ghq list | fzf)
+  if [ -z "$repo" ]; then
+    return
+  fi
+  cd "$(ghq root)/$repo"
+}

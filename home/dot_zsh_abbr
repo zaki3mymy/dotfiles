@@ -1,23 +1,59 @@
-ABBR_SET_EXPANSION_CURSOR=1
+export ABBR_SET_EXPANSION_CURSOR=1
 
 # git
 abbr -S 'gti'='git'
+abbr -S 'igt'='git'
+abbr -S 'git add'='git add -v'
+abbr -S 'git b'='git branch'
+abbr -S 'git cd'='cd $(git rev-parse --show-toplevel)'
+abbr -S 'git ch'='git checkout'
+abbr -S 'git clean'='git clean -f .'
 abbr -S 'git co'='git commit -v'
 abbr -S 'git coa'='git commit -a -v'
 abbr -S 'git cono'='git commit --amend --no-edit'
-abbr -S 'git ch'='git checkout'
-abbr -S 'git sw'='git switch'
-abbr -S 'git br'='git branch'
-abbr -S 'git di'='git diff'
 abbr -S 'git diff'='git diff -b'
+abbr -S 'git diff-base'='git diff $(git merge-base develop HEAD)'
 abbr -S 'git diffn'='git diff --name-only'
 abbr -S 'git diffs'='git diff --staged'
-abbr -S 'git stsh'='git stash show -p stash@{0}'
+abbr -S 'git diffst'='git diff --stat'
+abbr -S 'git diffw'="git diff --color-words --word-diff-regex='[0-9z-aA-z]'"
+abbr -S 'git log'='git log --stat'
+abbr -S 'git lgo'='git log --stat'
 abbr -S 'git s'='git status'
-abbr -S 'git merges'='git merge --squash --ff'
+abbr -S 'git stsh'='git stash show -p stash@{0}'
+abbr -S 'git sw'='git switch'
+abbr -S 'git wk'='git worktree'
+abbr -S 'git wka'='git worktree add'
+abbr -S 'git wkl'='git worktree list'
+abbr -S 'git wkp'='git worktree prune -v'
+
+# gcloud
+abbr -S 'gcloud au'='gcloud auth login'
+abbr -S 'gcloud auap'='gcloud auth application-default login'
+abbr -S 'gactivate'='gcloud config configurations activate'
 
 # go
+abbr -S 'goclean'='go clean -testcache'
 abbr -S 'gocov'="go test -cover -coverprofile cover.out ./%"
 abbr -S 'gocovhtml'='go tool cover -html=cover.out -o cover.html'
 
+# Nix
+abbr -S 'hms'='home-manager switch --flake ~/.config/home-manager#zaki3mymy'
+
 abbr -S 'cl'='claude --agent issue-workflow-orchestrator'
+
+# abbr -S 'docker'='podman'
+abbr -S 'docker-compose'='podman-compose'
+
+abbr -S 'podc'='podman-compose'
+
+# diff
+abbr -S 'diffw'='git diff --no-index --color-words'
+
+# typo
+abbr -S 'terrafrom'='terraform'
+abbr -S 'terrafomr'='terraform'
+abbr -S 'maek'='make'
+abbr -S 'meak'='make'
+abbr -S 'mkae'='make'
+abbr -S 'cd-'='cd -'

@@ -24,5 +24,14 @@ return {
         },
       })
     end, {})
+
+    require("telescope").setup({
+      defaults = {
+        preview = {
+          -- treesitterを入れるとlive_grepでエラーに成ったためfalseとする
+          treesitter = false,
+        },
+      },
+    })
   end,
 }

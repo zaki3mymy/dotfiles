@@ -3,6 +3,7 @@ return {
   event = "VeryLazy",
   opts = {
     recipe = { "minimal", { animate = false } },
-    fadelevel = 0.4,
+    fadelevel = 0.7,
+    lazy = true,
   },
 }

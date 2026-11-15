@@ -38,7 +38,19 @@ return {
         margin = { horizontal = 0, vertical = 2 },
         placement = {
           horizontal = "right",
-          vertical = "top",
+          vertical = "bottom",
+        },
+        options = {
+          winblend = 20,
+        },
+      },
+      ignore = {
+        filetypes = {
+          "go",
+          "terraform",
+          "lua",
+          "markdown",
+          "toggleterm",
         },
       },
       render = function(props)

@@ -1,0 +1,6 @@
+alias ls='ls --color=auto'
+alias grep='grep -I --color=auto'
+alias diff='diff -u --color=auto'
+
+alias lower='tr "[:upper:]" "[:lower:]"'
+alias upper='tr "[:lower:]" "[:upper:]"'

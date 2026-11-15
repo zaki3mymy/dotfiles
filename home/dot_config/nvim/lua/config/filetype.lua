@@ -16,6 +16,15 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt.shiftwidth = 4
   end,
 })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "markdown" },
+  callback = function()
+    vim.opt.expandtab = true
+    vim.opt.tabstop = 2
+    vim.opt.sotftabstop = 0
+    vim.opt.shiftwidth = 2
+  end,
+})
 
 -- LSPのリファレンスで特定の項目を選択したらリファレンスのウィンドウ(quickfix)を自動で閉じる
 vim.api.nvim_create_autocmd("FileType", {
