@@ -20,3 +20,15 @@ vim.api.nvim_create_autocmd({ "FocusGained", "BufEnter" }, {
   command = "if mode() != 'c' | checktime | endif",
   pattern = "*",
 })
+
+vim.g.clipboard = {
+  name = "OSC 52",
+  copy = {
+    ["+"] = require("vim.ui.clipboard.osc52").copy("+"),
+    ["*"] = require("vim.ui.clipboard.osc52").copy("*"),
+  },
+  paste = {
+    ["+"] = require("vim.ui.clipboard.osc52").paste("+"),
+    ["*"] = require("vim.ui.clipboard.osc52").paste("*"),
+  },
+}

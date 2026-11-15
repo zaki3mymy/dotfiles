@@ -1,3 +1,5 @@
+vim.loader.enable()
+
 require("base")
 require("init_lazy")
 

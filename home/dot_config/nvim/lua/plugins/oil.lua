@@ -6,6 +6,8 @@ local always_show_files = {
   "%.gitconfig",
   "%.gitignore",
   "%..+%.local%..+", -- globalの.gitignoreで除外しているファイル
+  "%.env.*",
+  "%.pre-commit-config%.yaml",
 }
 
 return {
@@ -13,6 +15,12 @@ return {
   ---@module 'oil'
   ---@type oil.SetupOpts
   dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+  opts = {
+    win_options = {
+      signcolumn = "yes:2",
+      statuscolumn = "",
+    },
+  },
   -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
   lazy = false,
   -- event = "VimEnter",

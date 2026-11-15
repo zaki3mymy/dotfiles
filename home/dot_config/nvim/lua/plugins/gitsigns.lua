@@ -57,13 +57,15 @@ return {
 
     -- blame の色を返る
     -- ColorScheme読み込み後に適用する
-    local hl_opts = { fg = "#888888", italic = true }
+    local hl_opts = { fg = "#666666", italic = true }
     vim.api.nvim_create_autocmd("ColorScheme", {
       pattern = "*",
       callback = function()
         vim.api.nvim_set_hl(0, "GitSignsCurrentLineBlame", hl_opts)
       end,
     })
+    -- 初回読み込み時にも一度実行しておく
+    vim.api.nvim_set_hl(0, "GitSingsCurrentLineBlame", hl_opts)
 
     -- ブランチと比較するためのショートカット
     vim.keymap.set("n", "<leader>gbc", function()
@@ -76,6 +78,6 @@ return {
           -- vim.notify("Gitsigns base: " .. choice)
         end
       end)
-    end)
+    end, { desc = "GitSigns: Select branch (vim.ui.select)" })
   end,
 }
