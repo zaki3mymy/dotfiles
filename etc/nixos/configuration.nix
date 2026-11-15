@@ -5,6 +5,8 @@
 # NixOS-WSL specific options are documented on the NixOS-WSL repository:
 # https://github.com/nix-community/NixOS-WSL
 
+# 変更したら`sudo nixos-rebuild switch`
+
 {
   config,
   lib,
@@ -49,11 +51,18 @@
     pkgs.chezmoi
     pkgs.xdg-utils
     pkgs.podman-compose
+    # NixOSからxdg-openでホスト側のブラウザを開くための設定
+    (pkgs.makeDesktopItem {
+      name = "windows-browser";
+      desktopName = "Windows Browser";
+      exec = "/mnt/c/Windows/System32/rundll32.exe url.dll,FileProtocolHandler %u";
+      startupNotify = false;
+      mimeTypes = [
+        "x-scheme-handler/http"
+        "x-scheme-handler/https"
+      ];
+    })
   ];
-  environment.sessionVariables = rec {
-    # WSLでターミナルからブラウザを開く設定
-    BROWSER = "/mnt/c/Windows/System32/rundll32.exe url.dll,FileProtocolHandler";
-  };
 
   time.timeZone = "Asia/Tokyo";
 
