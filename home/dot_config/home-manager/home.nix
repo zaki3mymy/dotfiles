@@ -26,7 +26,7 @@
 
   home.activation.waylandSocket = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     run ln -sf /mnt/wslg/runtime-dir/wayland-0 "$XDG_RUNTIME_DIR/wayland-0"
-    run ln -sf /mnt/wslg/runtime-dir/wayland-0.lock "$XDG_RUNTIME_DIR/wayland-0.lock"
+    # run ln -sf /mnt/wslg/runtime-dir/wayland-0.lock "$XDG_RUNTIME_DIR/wayland-0.lock"
   '';
 
   # デフォルトシェルをzshに
@@ -45,32 +45,33 @@
 
   home.packages = with pkgs; [
     actionlint
+    chezmoi
     curl
     direnv
     ffmpeg
+    fzf
     git
     git-secrets
     gh
+    ghq
     gnumake
+    jq
+    mermaid-cli
     neovim
     pre-commit
     ripgrep
     tmux
+    tree-sitter
     unzip
     vim
     zsh
     zsh-abbr
     zip
+    zoxide
 
     # Nix
     home-manager
     nixfmt
-
-    # dotfiles
-    chezmoi
-    stylua
-    shellcheck
-    shfmt
 
     # Python
     uv
@@ -78,7 +79,7 @@
     # Go
     go
     gopls
-    golangci-lint
+    # golangci-lint
 
     # IaC
     tenv
@@ -86,6 +87,7 @@
 
     # Cloud
     awscli2
+    google-cloud-sdk
 
     # web
     nodejs
