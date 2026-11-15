@@ -24,6 +24,12 @@
     '';
   };
 
+  # nix用のdirenvを有効化して高速化する
+  programs.direnv = {
+    enable = true;
+    nix-direnv.enable = true;
+  };
+
   home.activation.waylandSocket = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
     run ln -sf /mnt/wslg/runtime-dir/wayland-0 "$XDG_RUNTIME_DIR/wayland-0"
     # run ln -sf /mnt/wslg/runtime-dir/wayland-0.lock "$XDG_RUNTIME_DIR/wayland-0.lock"
