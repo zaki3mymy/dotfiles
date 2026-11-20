@@ -26,6 +26,9 @@
             shellcheck
             shfmt
           ];
+          shellHook = ''
+            pre-commit install
+          '';
         };
       }
     );
